@@ -10,7 +10,7 @@ python3 -m venv ./.venv
 pip install -r requirements.txt
 ```
 
-Besure to activate the environment before building or running the project:
+Be sure to activate the environment before building or running the project:
 
 ```
 source .venv/bin/activate
