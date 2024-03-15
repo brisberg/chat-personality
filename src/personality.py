@@ -2,8 +2,6 @@
 # This class can be persisted to disk as a text file and is used to structure the prompts send
 # to ChatGPT.
 
-import pickle
-
 from persistance.persistable import Persistable
 
 DEFAULT_FILENAME =  "personality.pkl"
