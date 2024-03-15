@@ -35,3 +35,11 @@ def get_completion(prompt: str, model="gpt-3.5-turbo"):
     )
 
     return {"content": response.choices[0].message.content, "usage": response.usage}
+
+def get_specific_completion(messages, model="gpt-3.5-turbo"):
+    response = get_client().chat.completions.create(
+        model=model,
+        messages=messages
+    )
+
+    return {"content": response.choices[0].message.content, "usage": response.usage}
