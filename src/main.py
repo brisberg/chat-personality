@@ -4,7 +4,7 @@ import os
 from openai import OpenAI
 import openai_service.openai_service as openai
 import personality
-from file_adapter import load_from_file, save_to_file
+from persistance.file_adapter import FileAdapter
 
 load_dotenv()
 
@@ -19,15 +19,18 @@ client = openai.get_client()
 file = Path("data/personalities")
 file.mkdir(parents=True, exist_ok=True)
 
-pers = personality.Personality()
-pers.directory = "abby"
-pers.name = "Abby"
-pers.clothing = ["Wide Hat"]
-pers.physical_attributes = ["tall"]
-pers.vocal_attributes = ["sultry"]
+file_loader = FileAdapter("data/personalities")
 
-save_to_file(pers)
-pers = load_from_file(personality.DEFAULT_DIRECTORY + "/abby/personality.pkl")
+pers = personality.Personality(
+    directory="abby",
+    name = "Abby",
+    clothing = ["Wide Hat"],
+    physical_attributes = ["tall"],
+    vocal_attributes = ["sultry"]
+)
+
+file_loader.save_to_file(pers)
+pers = file_loader.load_from_file("/abby/personality.pkl")
 
 print(pers)
 

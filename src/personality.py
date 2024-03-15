@@ -4,14 +4,23 @@
 
 import pickle
 
-DEFAULT_DIRECTORY = "data/personalities"
+from persistance.persistable import Persistable
 
-class Personality:
+DEFAULT_FILENAME =  "personality.pkl"
+
+class Personality(Persistable):
     directory = ""
     name = ""
     physical_attributes = []
     clothing = []
     vocal_attributes = []
 
+    def __init__(self, directory, name, physical_attributes = [], clothing = [], vocal_attributes = []):
+        super().__init__(directory, DEFAULT_FILENAME)
+        self.name = name
+        self.physical_attributes = physical_attributes
+        self.clothing = clothing
+        self.vocal_attributes = vocal_attributes
+
     def get_filepath(self):
-        return "".join([DEFAULT_DIRECTORY, "/", self.directory, "/personality.pkl"])
+        return "/".join([self.directory, DEFAULT_FILENAME])
