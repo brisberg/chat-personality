@@ -17,6 +17,10 @@ def init_client(api_key: str=None):
 
     return client
 
+def destroy_client():
+    global client
+    client = None
+
 def get_client():
     global client
     assert(client != None), "OpenAI Client must be initialized before use. Call InitClient() first."
